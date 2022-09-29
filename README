@@ -1,0 +1,29 @@
+# README
+
+## Project Structure
+
+- `m1/handling/DateUtils.java`: Date/Time parsing for HTTP requests
+- `m1/handling/HttpIoHandler.java`: Communication between server and client
+- `m1/server/HttpListener.java`: Implementation of the listener thread that awaits incoming client connection requests and enqueues them
+- `m1/server/HttpParsing.java`: Parses client HTTP messages to extract information such as protocol and headers
+- `m1/server/HttpRequest.java`: Implementation of `m1/interfaces/Request`
+- `m1/server/HttpResponse.java`: Implementation of `m1/interfaces/Response`
+- `m1/server/HttpTask.java`: Wraps `Socket`s for enqueing/dequeing worker tasks
+- `m1/server/HttpTaskQueue.java`: Provides an implementation of a thread-safe task queue for use by producers (the listener) and consumers (the workers)
+- `m1/server/HttpWorker.java`: Provides a worker that will dequeue a task from the task queue and handle it accordingly. Most of the logic around handling HTTP requests is here
+- `m1/server/HttpWorkerPool.java`: Thread pool implementation that provides an interface to observe the status of its threads
+- `m1/server/WebService.java`: Configures and starts the web service
+
+Request handlers:
+
+- `m1/server/RequestHandler.java`: Interface to be implemented by all request handlers
+- `m1/server/ControlRequestHandler.java`: Handles requests to the /control endpoint that displays information about the server's worker pool
+- `m1/server/StaticFileRequestHandler.java`: Handles requests for static files and directories
+
+
+## Extra Credit Attempted
+
+### 5.1 Directory display
+
+To run this, make a GET/HEAD request to a path that corresponds to a directory without an index.html file.
+
